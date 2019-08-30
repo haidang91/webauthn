@@ -22,7 +22,7 @@
             padding: 15px;
         }
 
-        #registerContainer, #mainContainer {
+        #fidoRegistrationContainer, #mainContainer, #fidoLoginContainer, #passwordLoginContainer, #multipleRegistrationContainer, #passwordRegistrationContainer {
             display: none;
         }
     </style>
@@ -31,24 +31,7 @@
     <div class="container">
         <div class="row row-center">
 
-            <div class="column" id="registerContainer">
-                <div class="formcontainer register">
-                    <h3>Register page</h3>
-                    <form id="register">
-                      <fieldset>
-                        <label for="name">name</label>
-                        <input type="text" name="name">
-                        <label for="username">username</label>
-                        <input type="text" name="username">
-                        <input class="button-primary" type="submit" value="Register">
-                      </fieldset>
-                    </form>
-
-                    <a href="#" id="toLogin">Already registered? Login page</a>
-                </div>
-            </div>
-
-            <div class="column" id="loginContainer">
+            <div class="column" id="fidoLoginContainer">
                 <div class="formcontainer login">
                     <h3>Login page</h3>
                     <form id="login">
@@ -59,9 +42,87 @@
                       </fieldset>
                     </form>
 
-                    <a href="#" id="toRegistration">Not registered yet? Registration</a>
+                    <a href="#" class="toFidoRegistration">Not registered yet? Registration</a>
                 </div>
             </div>
+
+            <div class="column" id="passwordLoginContainer">
+                    <div class="formcontainer login">
+                        <h3>Login page</h3>
+                        <form id="passwordLogin">
+                          <fieldset>
+                            <label for="nameField">username</label>
+                            <input type="text" name="username">
+                            <input type="password" name="password">
+                            <input class="button-primary" type="submit" value="Login">
+                          </fieldset>
+                        </form>
+    
+                        <a href="#" class="toPasswordRegistration">Not registered yet? Registration</a>
+                    </div>
+            </div>
+    
+
+            <div class="column" id="multipleLoginContainer">
+                <div class="formcontainer login">
+                        <a href="#" class="toLoginFido">Login with FIDO2</a>
+                </div>
+                <div class="formcontainer login">
+                        <a href="#" class="toLoginPassword">Login with password</a>
+                </div>
+                <div class="formcontainer register">
+                        <a href="#" id="toMultipleRegistrationContainer">Not registered yet? Registration</a>
+                </div>
+            </div>
+
+            <div class="column" id="multipleRegistrationContainer">
+                    <div class="formcontainer register">
+                            <a href="#" class="toFidoRegistration">Register with FIDO2</a>
+                    </div>
+                    <div class="formcontainer register">
+                            <a href="#" class="toPasswordRegistration">Register with password</a>
+                    </div>
+                    <div class="formcontainer register">
+                            <a href="#" id="toMultipleLoginContainer">Already registered? Login here</a>
+                    </div>
+            </div>
+
+            <div class="column" id="fidoRegistrationContainer">
+                    <div class="formcontainer register">
+                        <h3>Register page</h3>
+                        <form id="register">
+                          <fieldset>
+                            <label for="name">name</label>
+                            <input type="text" name="name">
+                            <label for="username">username</label>
+                            <input type="text" name="username">
+                            <input class="button-primary" type="submit" value="Register">
+                          </fieldset>
+                        </form>
+    
+                        <a href="#" class="toLoginFido">Already registered? FIDO Login page</a>
+                    </div>
+            </div>
+
+            <div class="column" id="passwordRegistrationContainer">
+                    <div class="formcontainer register">
+                        <h3>Register page</h3>
+                        <form id="passwordRegister">
+                          <fieldset>
+                            <label for="name">name</label>
+                            <input type="text" name="name">
+                            <label for="username">username</label>
+                            <input type="text" name="username">
+                            <label for="password">password</label>
+                            <input type="password" name="password">
+                            <input class="button-primary" type="submit" value="Register">
+                          </fieldset>
+                        </form>
+    
+                        <a href="#" class="toLoginPassword">Already registered? Password Login page</a>
+                    </div>
+            </div>
+            
 
             <div class="column" id="mainContainer">
 

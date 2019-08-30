@@ -1,20 +1,71 @@
 /**
- * Switch to login page
+ * Switch to FIDO login page
  */
-$('#toLogin').click(function(e) {
+$('.toLoginFido').click(function(e) {
+    e.preventDefault();
+    $('#multipleRegistrationContainer').hide();
+    $('#fidoRegistrationContainer').hide();
+    $('#passwordRegistrationContainer').hide();
+    $('#multipleLoginContainer').hide();
+    $('#passwordLoginContainer').hide();
+    $('#fidoLoginContainer').show();
+})  
+
+
+/**
+ * Switch to multiple Login Container 
+ */
+$('#toMultipleLoginContainer').click(function(e) {
     e.preventDefault();
     $('#registerContainer').hide();
+    $('#multipleLoginContainer').hide();
     $('#loginContainer').show();
 })
 
 /**
- * Switch to registration page
+ * Switch to multiple Registration Container 
+ *
  */
-$('#toRegistration').click(function(e) {
+
+ $('#toMultipleRegistrationContainer').click(function(e) {
     e.preventDefault();
-    $('#loginContainer').hide();
-    $('#registerContainer').show();
+    $('#multipleRegistrationContainer').show();
+    $('#fidoRegistrationContainer').hide();
+    $('#passwordRegistrationContainer').hide();
+    $('#multipleLoginContainer').hide();
+    $('#passwordLoginContainer').hide();
+    $('#fidoLoginContainer').hide();
+ })
+
+
+/**
+ * Switch to FIDO registration page
+ */
+$('.toFidoRegistration').click(function(e) {
+    e.preventDefault();
+    $('#multipleRegistrationContainer').hide();
+    $('#fidoRegistrationContainer').show();
+    $('#passwordRegistrationContainer').hide();
+    $('#multipleLoginContainer').hide();
+    $('#passwordLoginContainer').hide();
+    $('#fidoLoginContainer').hide();
 })
+
+/**
+ * Switch to password registration
+ *
+ */
+
+$('.toPasswordRegistration').click(function(e) {
+    e.preventDefault();
+    $('#multipleRegistrationContainer').hide();
+    $('#fidoRegistrationContainer').hide();
+    $('#passwordRegistrationContainer').show();
+    $('#multipleLoginContainer').hide();
+    $('#passwordLoginContainer').hide();
+    $('#fidoLoginContainer').hide();
+})
+
 
 let loadMainContainer = () => {
     return fetch('/personalInfo', {credentials: 'include'})
@@ -49,5 +100,6 @@ $('#logoutButton').click(() => {
 
     $('#registerContainer').hide();
     $('#mainContainer').hide();
-    $('#loginContainer').show();
+    $('#loginContainer').hide();
+    $('#multipleLoginContainer').show();
 })
