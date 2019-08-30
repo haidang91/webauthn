@@ -1,5 +1,6 @@
 'use strict';
 
+
 let getMakeCredentialsChallenge = (formBody) => {
     return fetch('/webauthn/register', {
         method: 'POST',
@@ -50,11 +51,17 @@ $('#register').submit(function(event) {
 
     getMakeCredentialsChallenge({username, name})
         .then((response) => {
+            console.log('BROWSER RECEIVING SERVER RESPONSE...\n\n', response)
             let publicKey = preformatMakeCredReq(response);
-            return navigator.credentials.create({ publicKey })
+            console.log('pure PK', publicKey)
+            let testKey = JSON.parse('{"challenge":{},"rp":{"name":"ACME Corporation"},"user":{"id":{},"name":"fuck","displayName":"fuck"},"attestation":"direct","pubKeyCredParams":[{"type":"public-key","alg":-7}],"status":"ok"}')
+            console.log('Testkey', testKey)
+            return navigator.credentials.create({ 'publicKey':publicKey })
         })
         .then((response) => {
+            console.log('processing PUBLICKEYCREDENTIAL', response)
             let makeCredResponse = publicKeyCredentialToJSON(response);
+            console.log('Browser SENDING CHALLENGE RESPONSE', makeCredResponse)
             return sendWebAuthnResponse(makeCredResponse)
         })
         .then((response) => {

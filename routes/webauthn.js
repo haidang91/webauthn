@@ -40,6 +40,7 @@ router.post('/register', (request, response) => {
     request.session.challenge = challengeMakeCred.challenge;
     request.session.username  = username;
 
+    console.log('SERVER creating CHALLENGE...\n\n', challengeMakeCred)
     response.json(challengeMakeCred)
 })
 
@@ -105,9 +106,15 @@ router.post('/response', (request, response) => {
     }
 
     let result;
+
     if(webauthnResp.response.attestationObject !== undefined) {
+
+        console.log("SERVER RECEIVING AUTHENTICATOR/CLIENT Response...\n\n", webauthnResp)
+
         /* This is create cred */
         result = utils.verifyAuthenticatorAttestationResponse(webauthnResp);
+
+        console.log('SERVER Verifyining the CLIENT RESPONSE \n\n', result)
 
         if(result.verified) {
             database[request.session.username].authenticators.push(result.authrInfo);
@@ -122,6 +129,8 @@ router.post('/response', (request, response) => {
             'message': 'Can not determine type of response!'
         })
     }
+
+    
 
     if(result.verified) {
         request.session.loggedIn = true;

@@ -47,9 +47,18 @@ var generateRandomBuffer = (len) => {
  * Decodes arrayBuffer required fields.
  */
 var preformatMakeCredReq = (makeCredReq) => {
+    console.log('DECODING SERVER CHALLENGE \n', makeCredReq.challenge)
+    console.log('DECODING SERVER CHALLENGER USER ID \n', makeCredReq.user.id)
     makeCredReq.challenge = base64url.decode(makeCredReq.challenge);
+    console.log('DECODED server : \n ', makeCredReq.challenge);
     makeCredReq.user.id = base64url.decode(makeCredReq.user.id);
+    console.log('DECODED user: \n', makeCredReq.user.id)
 
+    let TestChallenge = base64url.encode(makeCredReq.challenge)
+    let TestUser = base64url.encode(makeCredReq.user.id)
+
+    console.log('revert TestChallenge', TestChallenge)
+    console.log('revert user', TestUser)
     return makeCredReq
 }
 
